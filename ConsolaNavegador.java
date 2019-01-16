@@ -3,10 +3,6 @@ package uF5.practicas.practica1.navegador_parte_0;
 
 import java.util.Scanner;
 
-/**
- *
- * @author pere
- */
 public class ConsolaNavegador {
 
     //opciones menu principal
@@ -20,11 +16,9 @@ public class ConsolaNavegador {
     final static int VEURE_VISITADES = 8;
     final static int SORTIR = 0;
 
-    /**
-     * Mostra el menú principal de la aplicación.
-     */
+    /**Mostra el menú principal de la aplicación.      */
     public static void mostrarMenuPrincipal() {
-        System.out.println("MENU PRINCIPAL");
+        System.out.println("\nMENU PRINCIPAL");
         System.out.println("1. Anar a: ");  // ir a
         System.out.println("2. Enrere");  // atras
         System.out.println("3. Endavant"); // adelante
@@ -33,88 +27,98 @@ public class ConsolaNavegador {
         System.out.println("6. Veure adreces d'interes");  // Ver direcciones de interes
         System.out.println("7. Veure historial");  //  Ver historial
         System.out.println("8. Veure nombre visites");  // Ver número visitas
+        System.out.println("9. ver listaa entera");  // Ver número visitas
         System.out.println("0. Sortir");
-        System.out.print("Opcion? ");
+        System.out.print("\tOpcion: ");
     }
-
-    /**
-     * Pide un código de barras hasta que se entre un valor no vacío.
-     *
-     * @return código de barras no vacío
-     */
-    public static String llegirURL() {
-        String URL;
-        Scanner lector = new Scanner(System.in);
-
-        do {
-            System.out.print("URL: ");
-            URL = lector.nextLine();
-        } while (URL.isEmpty());
-
-        return URL;
-    }
-
-    /**
-     * Lee un entero que representa una opción de menos.
-     *
-     * @return un entero, -1 si la entrada no se numerica
-     */
+    
+    /**Lee un entero que representa una opción de menos.
+     * @return un entero, -1 si la entrada no se numerica      */
     public static int llegirOpcio() {
         Scanner lector = new Scanner(System.in);
         int opcio = 0;
-
         try {
             opcio = Integer.parseInt(lector.nextLine());
         } catch (NumberFormatException e) {
             opcio = -1;
         }
-
         return opcio;
     }
+    
+    //--------------------------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------------------------
 
     public static void main(String[] args) {
         Navegador firefox = new Navegador();
         int opcio;
 
         do {
+        	System.out.println("\n");
             System.out.println(firefox.getURL());
-            Navegador.mostrarPila(firefox.getPilaEndavant());
-            Navegador.mostrarPila(firefox.getPilaEnrere());
-            mostrarMenuPrincipal();
-            opcio = llegirOpcio();
+            System.out.println("\n");
+            //Navegador.mostrarPila(firefox.getPilaEndavant());  //pila Adelante
+            //Navegador.mostrarPila(firefox.getPilaEnrere());  //pila Atras
+            
+            mostrarMenuPrincipal();  //Muestra el menu de opciones
+            opcio = llegirOpcio(); // sirve para elegir una opcion del menu
             switch (opcio) {
                 case ENTRAR_URL:
                     String novaURL = llegirURL();
-                    firefox.anarA(novaURL);
+                    firefox.anarA(novaURL); // ir a / va a la pagina web indicada
                     break;
-                case ENRERE: // vacía el carro
-                    firefox.enrere();
+                case ENRERE: // Atras
+                    firefox.enrere(); // 
                     break;
-                case ENDAVANT:
-                    firefox.endavant();
+                case ENDAVANT: // Adelante
+                    firefox.endavant(); // para adelante 
                     break;
-                case AFEGIR_PREFERITS:
+                case AFEGIR_PREFERITS:  //Añadir a favoritos
                     firefox.afegirPreferit(firefox.getURL());
                     break;
-                case ELIMINAR_PREFERITS:
+                case ELIMINAR_PREFERITS://Eliminar favoritos
                     firefox.eliminarPreferits(firefox.getURL());
                     break;
-                case VEURE_PREFERITS:
+                case VEURE_PREFERITS://Ver favoritos
                     firefox.veurePreferits();
                     break;
-                case VEURE_HISTORIAL:
+                case VEURE_HISTORIAL://Ver historial
                     firefox.veureHistorial();
                     break;
-                case VEURE_VISITADES:
+                case VEURE_VISITADES:// Ver visitadas
                     firefox.veureVisitades();
                     break;
                 case SORTIR:
                     break;
+                
+                case 9:
+                	firefox.mostrar();
+                    break;
+                    
                 default:
                     System.out.println("Opcio incorrecta");
                     break;
             }
         } while (opcio != SORTIR);
     }
+    //--------------------------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------------------------
+    
+    
+    /**Pide un código de barras hasta que se entre un valor no vacío.
+     * @return código de barras no vacío      */
+    public static String llegirURL() {
+        String URL;
+        Scanner lector = new Scanner(System.in);
+
+        do {
+            System.out.print("\nURL: ");
+            URL = lector.nextLine();
+        } while (URL.isEmpty());
+
+        return URL;
+    }
+    
+    
+    
 
 }
