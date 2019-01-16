@@ -11,6 +11,7 @@ public class Navegador {
 	private Stack<String> pilaAtras = new Stack<String>();
 	private Stack<String> pilaAdelante = new Stack<String>();
 	private ArrayList<String> favoritos = new ArrayList<String>();
+	private ArrayList<String> historial = new ArrayList<String>();
 	
 
 	// CONSTRUCTOR
@@ -60,14 +61,24 @@ public class Navegador {
 	
 	// Opcion 4
 	public void afegirPreferit(String url) {
-		favoritos.add(url);
-		System.out.println("\tPagina agregada: " + url);
+		boolean existe = favoritos.contains(url);// verifica si ya esta guardada la pagina
+		if (existe) {
+			System.out.println("\tLa pagina ya ha sido agregada.");
+		}else {
+			favoritos.add(url);
+			System.out.println("\tPagina agregada: " + url);
+		}
 	}
 
 	// Opcion 5
 	public void eliminarPreferits(String url) {
-		favoritos.remove(url);
-		System.out.println("\tPagina borrada: " + url);
+		boolean borrada = favoritos.contains(url);// verifica si ya esta eliminada la pagina
+		if (borrada) {
+			favoritos.remove(url);
+			System.out.println("\tPagina borrada: " + url);
+		}else {
+			System.out.println("\tLa pagina ya ha sido borrada.");
+		}
 	}
 	
 	// Opcion 6
@@ -100,7 +111,15 @@ public class Navegador {
 	// ------------------------------------------------------------------------
 	// ------------------------------------------------------------------------
 	
+	public void veureHistorial() {
+		// TODO Auto-generated method stub
 
+	}
+
+	public void veureVisitades() {
+		// TODO Auto-generated method stub
+
+	}
 	
 	
 	
@@ -113,7 +132,7 @@ public class Navegador {
 	
 
 	public Object getPilaEndavant() {
-
+		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -121,8 +140,6 @@ public class Navegador {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	
 	
 	public static void mostrarPila(Object object) {
 
@@ -130,14 +147,6 @@ public class Navegador {
 
 
 
-	public void veureHistorial() {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void veureVisitades() {
-		// TODO Auto-generated method stub
-
-	}
+	
 
 }
