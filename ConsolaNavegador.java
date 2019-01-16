@@ -29,7 +29,6 @@ public class ConsolaNavegador {
         System.out.println("6. Veure adreces d'interes");  // Ver direcciones de interes
         System.out.println("7. Veure historial");  //  Ver historial
         System.out.println("8. Veure nombre visites");  // Ver número visitas
-        System.out.println("9. ver listaa entera");  // Ver número visitas
         System.out.println("0. Sortir");
         System.out.print("\tOpcion: ");
     }
@@ -54,24 +53,20 @@ public class ConsolaNavegador {
         Navegador firefox = new Navegador();
         int opcio;
         
-        /*
-        LocalDate fechaActual = LocalDate.now();
-        LocalTime hora = LocalTime.now();
-        
-        System.out.println("Fecha: " + fechaActual);
-        System.out.println("Hora: " + hora);
-        */
-        
-   
-    
         do {
         	System.out.println("\n===========NAVEGADOR===========");
             System.out.println(firefox.getURL());  // muestra la pagina actual.
             System.out.println("\n===============================");
             //Navegador.mostrarPila(firefox.getPilaEndavant());  //pila Adelante
             //Navegador.mostrarPila(firefox.getPilaEnrere());  //pila Atras
-            
-            mostrarMenuPrincipal();  //Muestra el menu de opciones
+            System.out.println("\n----------------------------------------");
+            System.out.println("ATRAS:");
+            Navegador.mostrarPila(firefox.getPilaAdelante());
+            System.out.println("----------------------------------------");
+            System.out.println("ADELANTE:");
+            Navegador.mostrarPila(firefox.getPilaAtras());  
+            System.out.println("----------------------------------------");
+            mostrarMenuPrincipal();  //Muestra el menu de opciones00
             opcio = llegirOpcio(); // sirve para elegir una opcion del menu
             switch (opcio) {
                 case ENTRAR_URL:
@@ -100,12 +95,7 @@ public class ConsolaNavegador {
                     firefox.veureVisitades();
                     break;
                 case SORTIR:
-                    break;
-                
-                case 9:
-                	firefox.mostrar();
-                    break;
-                    
+                    break;    
                 default:
                     System.out.println("Opcio incorrecta");
                     break;

@@ -46,7 +46,7 @@ public class Historial {
 	//METODOS
 	@Override
 	public String toString() {
-		return "URL:" + NombreURL + 
+		return "\nURL: " + NombreURL + 
 				"\nFecha: " + fechaActual + 
 				" - Hora: " + hora.getHour() + ":" + hora.getMinute()+ ":" + hora.getSecond();
 	}
