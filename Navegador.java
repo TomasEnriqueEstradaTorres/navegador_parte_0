@@ -1,5 +1,7 @@
 package uF5.practicas.practica1.navegador_parte_0;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -11,8 +13,9 @@ public class Navegador {
 	private Stack<String> pilaAtras = new Stack<String>();
 	private Stack<String> pilaAdelante = new Stack<String>();
 	private ArrayList<String> favoritos = new ArrayList<String>();
-	private ArrayList<String> historial = new ArrayList<String>();
 	
+	private ArrayList<Historial> historial = new ArrayList<Historial>();
+	private Historial verHistorial;
 
 	// CONSTRUCTOR
 	public Navegador() {
@@ -33,6 +36,9 @@ public class Navegador {
 		// System.out.println("\n\tPagina web visitada: " + novaURL);
 		pilaAtras.push(novaURL); // agrega la pagina a la pilaAtras
 		URL = novaURL;// Mostrada la pagina actual.
+		//Crea los datos para el historial con URL, fecha y hora
+		verHistorial = new Historial(novaURL, LocalDate.now(), LocalTime.now());
+		historial.add(verHistorial);// agrega los datos al historial
 	}
 
 	// Opcion 2
@@ -41,6 +47,10 @@ public class Navegador {
 			String devuelto = pilaAtras.pop();
 			pilaAdelante.push(devuelto);
 			URL = devuelto;// Mostrada la pagina actual.
+			
+			//Crea los datos para el historial con URL, fecha y hora
+			verHistorial = new Historial(getURL(), LocalDate.now(), LocalTime.now());
+			historial.add(verHistorial);// agrega los datos al historial
 		} catch (Exception e) {
 			// System.out.println(e); // indica que la pila esta vacia
 			System.out.println("No hay mas paginas para atras");
@@ -53,6 +63,10 @@ public class Navegador {
 			String devuelto = pilaAdelante.pop();
 			pilaAtras.push(devuelto);
 			URL = devuelto;// Mostrada la pagina actual.
+			
+			//Crea los datos para el historial con URL, fecha y hora
+			verHistorial = new Historial(getURL(), LocalDate.now(), LocalTime.now());
+			historial.add(verHistorial);// agrega los datos al historial
 		} catch (Exception e) {
 			// System.out.println(e); // indica que la pila esta vacia
 			System.out.println("No hay mas paginas para adelante");
@@ -94,6 +108,17 @@ public class Navegador {
 		}
 		System.out.println("===============================");
 	}
+	
+	// Opcion 7
+	public void veureHistorial() {
+		System.out.println("\n=====================HISTORIAL========================");
+		for (Historial listaHistorial : historial) {
+			System.out.println(listaHistorial);
+		}
+		System.out.println("\n======================================================");
+	}
+	
+	
 
 	// ------------------------------------------------------------------------
 	// ------------------------------------------------------------------------
@@ -111,11 +136,7 @@ public class Navegador {
 	// ------------------------------------------------------------------------
 	// ------------------------------------------------------------------------
 	
-	public void veureHistorial() {
-		// TODO Auto-generated method stub
-
-	}
-
+	
 	public void veureVisitades() {
 		// TODO Auto-generated method stub
 

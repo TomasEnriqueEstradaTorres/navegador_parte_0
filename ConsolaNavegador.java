@@ -1,6 +1,8 @@
 
 package uF5.practicas.practica1.navegador_parte_0;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Scanner;
 
 public class ConsolaNavegador {
@@ -51,7 +53,17 @@ public class ConsolaNavegador {
     public static void main(String[] args) {
         Navegador firefox = new Navegador();
         int opcio;
-
+        
+        /*
+        LocalDate fechaActual = LocalDate.now();
+        LocalTime hora = LocalTime.now();
+        
+        System.out.println("Fecha: " + fechaActual);
+        System.out.println("Hora: " + hora);
+        */
+        
+   
+    
         do {
         	System.out.println("\n===========NAVEGADOR===========");
             System.out.println(firefox.getURL());  // muestra la pagina actual.
