@@ -53,9 +53,9 @@ public class ConsolaNavegador {
         int opcio;
 
         do {
-        	System.out.println("\n");
-            System.out.println(firefox.getURL());
-            System.out.println("\n");
+        	System.out.println("\n===========NAVEGADOR===========");
+            System.out.println(firefox.getURL());  // muestra la pagina actual.
+            System.out.println("\n===============================");
             //Navegador.mostrarPila(firefox.getPilaEndavant());  //pila Adelante
             //Navegador.mostrarPila(firefox.getPilaEnrere());  //pila Atras
             

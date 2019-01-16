@@ -1,5 +1,6 @@
 package uF5.practicas.practica1.navegador_parte_0;
 
+import java.util.ArrayList;
 import java.util.Stack;
 
 // SOLO USAR: listas (List), conjuntos (Set), mapas o diccionarios (Map)
@@ -9,6 +10,8 @@ public class Navegador {
 	private String URL;
 	private Stack<String> pilaAtras = new Stack<String>();
 	private Stack<String> pilaAdelante = new Stack<String>();
+	private ArrayList<String> favoritos = new ArrayList<String>();
+	
 
 	// CONSTRUCTOR
 	public Navegador() {
@@ -54,6 +57,32 @@ public class Navegador {
 			System.out.println("No hay mas paginas para adelante");
 		}
 	}
+	
+	// Opcion 4
+	public void afegirPreferit(String url) {
+		favoritos.add(url);
+		System.out.println("\tPagina agregada: " + url);
+	}
+
+	// Opcion 5
+	public void eliminarPreferits(String url) {
+		favoritos.remove(url);
+		System.out.println("\tPagina borrada: " + url);
+	}
+	
+	// Opcion 6
+	public void veurePreferits() {
+		System.out.println("\nLISTA DE PAGINAS FAVORITAS");
+		System.out.println("===============================");
+		if (favoritos.isEmpty()) {
+			System.out.println("No hay favoritos.");
+		}else {
+			for (String lista : favoritos) {
+				System.out.println(lista);
+			}
+		}
+		System.out.println("===============================");
+	}
 
 	// ------------------------------------------------------------------------
 	// ------------------------------------------------------------------------
@@ -70,6 +99,18 @@ public class Navegador {
 	}
 	// ------------------------------------------------------------------------
 	// ------------------------------------------------------------------------
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	public Object getPilaEndavant() {
 
@@ -81,24 +122,13 @@ public class Navegador {
 		return null;
 	}
 
+	
+	
 	public static void mostrarPila(Object object) {
 
 	}
 
-	public void afegirPreferit(String url) {
-		// TODO Auto-generated method stub
 
-	}
-
-	public void eliminarPreferits(String url) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void veurePreferits() {
-		// TODO Auto-generated method stub
-
-	}
 
 	public void veureHistorial() {
 		// TODO Auto-generated method stub
