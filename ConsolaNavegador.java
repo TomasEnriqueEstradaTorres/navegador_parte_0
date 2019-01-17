@@ -1,8 +1,6 @@
 
 package uF5.practicas.practica1.navegador_parte_0;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.Scanner;
 
 public class ConsolaNavegador {
@@ -60,10 +58,10 @@ public class ConsolaNavegador {
             //Navegador.mostrarPila(firefox.getPilaEndavant());  //pila Adelante
             //Navegador.mostrarPila(firefox.getPilaEnrere());  //pila Atras
             System.out.println("\n----------------------------------------");
-            System.out.println("ATRAS:");
+            System.out.println("ADELANTE:");
             Navegador.mostrarPila(firefox.getPilaAdelante());
             System.out.println("----------------------------------------");
-            System.out.println("ADELANTE:");
+            System.out.println("ATRAS:"); 
             Navegador.mostrarPila(firefox.getPilaAtras());  
             System.out.println("----------------------------------------");
             mostrarMenuPrincipal();  //Muestra el menu de opciones00

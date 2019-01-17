@@ -3,6 +3,10 @@ package uF5.practicas.practica1.navegador_parte_0;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Scanner;
+import java.util.Set;
 import java.util.Stack;
 
 // SOLO USAR: listas (List), conjuntos (Set), mapas o diccionarios (Map)
@@ -12,9 +16,15 @@ public class Navegador {
 	private String URL;
 	private Stack<String> pilaAtras = new Stack<String>();
 	private Stack<String> pilaAdelante = new Stack<String>();
-	private ArrayList<String> favoritos = new ArrayList<String>();
+	
+	//No permite objetos que sean iguales por medio de la url.
+	private Set<Favoritos> favoritos = new HashSet<>(); 
+	private Favoritos listaFavoritos; // servira para poder saber si la pagina ya ha sido agregada
+	//private ArrayList<String> favoritos = new ArrayList<String>();
+	
 	private ArrayList<Historial> historial = new ArrayList<Historial>();
-
+	//private
+	
 
 	//private ArrayList<Historial> visitas = new ArrayList<Historial>();
 	//private Visitas verVisitas;
@@ -80,23 +90,30 @@ public class Navegador {
 
 	// Opcion 4
 	public void afegirPreferit(String url) {
-		boolean existe = favoritos.contains(url);// verifica si ya esta guardada la pagina
+		Scanner sc = new Scanner(System.in);
+		System.out.print("\tIngrese Descripcion: ");
+		String detalle = sc.nextLine();// guarda la descripcion de la pagina
+		listaFavoritos = new Favoritos(url, detalle);
+		boolean existe = favoritos.contains(listaFavoritos);// verifica si ya esta guardada la pagina
 		if (existe) {
 			System.out.println("\tLa pagina ya ha sido agregada.");
-		} else {
-			favoritos.add(url);
+		}else {
+			favoritos.add(listaFavoritos);
 			System.out.println("\tPagina agregada: " + url);
 		}
 	}
 
 	// Opcion 5
-	public void eliminarPreferits(String url) {
-		boolean borrada = favoritos.contains(url);// verifica si ya esta eliminada la pagina
-		if (borrada) {
-			favoritos.remove(url);
-			System.out.println("\tPagina borrada: " + url);
-		} else {
-			System.out.println("\tLa pagina ya ha sido borrada.");
+	public void eliminarPreferits(String url) {		
+		// Se pasa favoritos a un iterador para poder borrar mientras se recorre la lista
+		Iterator<Favoritos> iterator = favoritos.iterator();
+		while (iterator.hasNext()){// mientras alla un siguiente mas adelante sigue
+			// verifica el nombre que hay en cada objeto
+		    String nombreURL = iterator.next().getNombreURL();
+		    if(nombreURL.equals(url)){//comprueba si son iguales
+		        iterator.remove();// remueve el objeto con el nombre de url igual
+		        System.out.println("\tPagina borrada: " + url);
+		    }
 		}
 	}
 
@@ -107,11 +124,11 @@ public class Navegador {
 		if (favoritos.isEmpty()) {
 			System.out.println("No hay favoritos.");
 		} else {
-			for (String lista : favoritos) {
-				System.out.println(lista);
+			for (Favoritos favorito : favoritos) {
+				System.out.println(favorito);
 			}
 		}
-		System.out.println("===============================");
+		System.out.println("==============================="); 
 	}
 
 	// Opcion 7
@@ -131,6 +148,8 @@ public class Navegador {
 
 	// Opcion 8
 	public void veureVisitades() {
+		
+		
 
 	}
 
